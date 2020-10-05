@@ -1,5 +1,8 @@
 <?php
+require_once __DIR__ . '/../traits/GetIdCode.php';
+
 class Dipendente {
+    use GetIdCode;
     protected $idDipendente;
     protected $nomeDipendente;
     protected $cognomeDipendente;
@@ -7,11 +10,14 @@ class Dipendente {
     protected $repartoDipendente;
 
     public function __construct($_idDipendente, $_nomeDipendente, $_cognomeDipendente, $_livelloDipendente, $_repartoDipendente){
-        //idDipendente passato tramite trait
         $this->nomeDipendente = $_nomeDipendente;
         $this->cognomeDipendente = $_cognomeDipendente;
         $this->livelloDipendente = $_livelloDipendente;
         $this->repartoDipendente = $_repartoDipendente;
+    }
+
+    public function getIdDipendente(){
+        return getIdCode();
     }
 
     public function getNomeDipendente(){
