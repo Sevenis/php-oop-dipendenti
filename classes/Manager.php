@@ -4,8 +4,8 @@ require_once 'Dipendente.php';
 class Manager extends Dipendente{
     private $benefits = [];
 
-    public function __construct($_idDipendente,$_nomeDipendente,$_cognomeDipendente, $_livelloDipendente, $_repartoDipendente, $_benefits){
-        parent::__construct($_idDipendente, $_nomeDipendente, $_cognomeDipendente, $_livelloDipendente, $_repartoDipendente);
+    public function __construct($_nomeDipendente,$_cognomeDipendente, $_livelloDipendente, $_repartoDipendente, $_benefits){
+        parent::__construct($_nomeDipendente, $_cognomeDipendente, $_livelloDipendente, $_repartoDipendente);
         $this->benefits = $_benefits;
     }
 
@@ -15,12 +15,12 @@ class Manager extends Dipendente{
 
     public function getBenefits(){
         if(empty($this->benefits)){
-            die('Il manager non ha benefit aggiuntivi');
-        }
-        foreach ($this->benefits as $benefit){
-            echo $benefit . ' ';
+            throw new Exception("Il manager non ha benefici aggiuntivi");
+        } else {
+            foreach ($this->benefits as $benefit){
+                echo $benefit . ' ';
+            }
         }
     }
 
 }
- ?>

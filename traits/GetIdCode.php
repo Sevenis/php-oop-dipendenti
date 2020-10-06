@@ -7,9 +7,9 @@ trait GetIdCode{
 
     public function getIdCode(){
         $random = rand(1000, 7000);
-        $this->randNumber = $random;
-        $this->idCode = $random + NOW('y');
-        return $this->$idCode;
+        $randNumber = $random . date("Y");
+        $this->idCode = $randNumber;
+        return $this->idCode;
     }
 
 }

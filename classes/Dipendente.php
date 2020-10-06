@@ -9,22 +9,48 @@ class Dipendente {
     protected $livelloDipendente;
     protected $repartoDipendente;
 
-    public function __construct($_idDipendente, $_nomeDipendente, $_cognomeDipendente, $_livelloDipendente, $_repartoDipendente){
-        $this->nomeDipendente = $_nomeDipendente;
-        $this->cognomeDipendente = $_cognomeDipendente;
-        $this->livelloDipendente = $_livelloDipendente;
-        $this->repartoDipendente = $_repartoDipendente;
+    public function __construct($_nomeDipendente, $_cognomeDipendente, $_livelloDipendente, $_repartoDipendente){
+        $this->idDipendente = $this->getIdCode();
+
+        if(is_string($_nomeDipendente)){
+            $this->nomeDipendente = $_nomeDipendente;
+        } else {
+            throw new Exception("Nome del dipendente non corretto!");
+        }
+
+        if(is_string($_cognomeDipendente)){
+            $this->cognomeDipendente = $_cognomeDipendente;
+        } else {
+            throw new Exception("Cognome del dipendente non corretto!");
+        }
+
+        if(is_int($_livelloDipendente)){
+            $this->livelloDipendente = $_livelloDipendente;
+        } else {
+            throw new Exception("Livello dipendente non corretto!");
+        }
+
+        if(($_repartoDipendente == "Amministrazione") OR ($_repartoDipendente == "Booking") OR ($_repartoDipendente == "Direzione")){
+            $this->repartoDipendente = $_repartoDipendente;
+        } else {
+            throw new Exception("Reparto non corretto!");
+        }
     }
 
     public function getIdDipendente(){
-        return getIdCode();
+        if(empty($this->idDipendente)){
+            throw new Exception("ID dipendente non presente!");
+        } else {
+            return $this->idDipendente;
+        }
     }
 
     public function getNomeDipendente(){
         if(empty($this->nomeDipendente)){
-            die('Nome dipendente non presente!');
+            throw new Exception("Nome dipendente non presente!");
+        } else {
+            return $this->nomeDipendente;
         }
-        return $this->nomeDipendente;
     }
 
     public function setNomeDipendente($_nomeDipendente){
@@ -33,9 +59,10 @@ class Dipendente {
 
     public function getCognomeDipendente(){
         if(empty($this->cognomeDipendente)){
-            die('Cognome del dipendente non presente!');
+            throw new Exception("Cognome dipendente non presente!");
+        } else {
+            return $this->cognomeDipendente;
         }
-        return $this->cognomeDipendente;
     }
 
     public function setCognomeDipendente($_cognomeDipendente){
@@ -44,9 +71,10 @@ class Dipendente {
 
     public function getLivelloDipendente(){
         if(empty($this->livelloDipendente)){
-            die('Livello non presente');
+            throw new Exception("Livello dipendente non presente!");
+        } else {
+            return $this->livelloDipendente;
         }
-        return $this->livelloDipendente;
     }
 
     public function setLivelloDipendente($_livelloDipendente){
@@ -55,9 +83,10 @@ class Dipendente {
 
     public function getRepartoDipendente(){
         if(empty($this->repartoDipendente)){
-            die('Reparto non presente!');
+            throw new Exception("Reparto non presente!");
+        } else {
+            return $this->repartoDipedente;
         }
-        return $this->repartoDipedente;
     }
 
     public function setRepartoDipendente($_repartoDipendente){
